@@ -25,11 +25,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_MEETING_TABLE = "CREATE TABLE Meeting (" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "meet_title TEXT," +
-            "meet_owner TEXT," +
+            "meet_duree INTEGER," +
             "meet_link TEXT," +
             "meet_date TEXT," +
             "meet_time TEXT," +
-            "meet_duree INTEGER" +
+            "meet_salle TEXT" +
             ");";
 
 
