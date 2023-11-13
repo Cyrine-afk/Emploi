@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/title_input"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Meet Title"
@@ -20,7 +20,7 @@
 
     <EditText
         android:id="@+id/link_input"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -32,7 +32,7 @@
 
     <EditText
         android:id="@+id/date_input"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -43,20 +43,8 @@
         app:layout_constraintTop_toBottomOf="@+id/link_input" />
 
     <EditText
-        android:id="@+id/time_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Meet Time"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_input" />
-
-    <EditText
         android:id="@+id/salle_input"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -64,11 +52,11 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_input" />
+        app:layout_constraintTop_toBottomOf="@+id/date_input" />
 
     <EditText
         android:id="@+id/duree_input"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
