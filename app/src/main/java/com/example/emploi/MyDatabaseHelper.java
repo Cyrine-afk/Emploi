@@ -2,6 +2,7 @@ package com.example.emploi;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.emploi.entities.Meeting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
@@ -77,6 +81,41 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<Meeting> getAllMeetings() {
+        List<Meeting> meetingsList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query("Meeting", null, null, null, null, null, null);
 
+        int idColumnIndex = cursor.getColumnIndex("_id");
+        int meet_titleColumnIndex = cursor.getColumnIndex("meet_title");
+        int meet_dureeColumnIndex = cursor.getColumnIndex("meet_duree");
+        int meet_linkColumnIndex = cursor.getColumnIndex("meet_link");
+        int meet_dateColumnIndex = cursor.getColumnIndex("meet_date");
+        int meet_salleColumnIndex = cursor.getColumnIndex("meet_salle");
+
+        while (cursor.moveToNext()) {
+            Meeting meeting = new Meeting();
+            meeting.setIdMeet(cursor.getInt(idColumnIndex));
+            meeting.setMeetTitle(cursor.getString(meet_titleColumnIndex));
+            meeting.setMeetDuree(cursor.getInt(meet_dureeColumnIndex));
+            meeting.setMeetLink(cursor.getString(meet_linkColumnIndex));
+            meeting.setMeetDate(cursor.getString(meet_dateColumnIndex));
+            meeting.setMeetSalle(cursor.getString(meet_salleColumnIndex));
+
+            // Check if the column exists in the result set before accessing its value
+            /*if (descriptionColumnIndex >= 0) {
+                meeting.setDescription(cursor.getString(descriptionColumnIndex));
+            }
+
+            if (creditHoursColumnIndex >= 0) {
+                meeting.setCreditHours(cursor.getInt(creditHoursColumnIndex));
+            }*/
+
+            meetingsList.add(meeting);
+        }
+
+        cursor.close();
+        return meetingsList;
+    }
 
 }
