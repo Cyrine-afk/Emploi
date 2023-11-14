@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/title_input"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Meet Title"
@@ -20,7 +20,7 @@
 
     <EditText
         android:id="@+id/link_input"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -32,7 +32,7 @@
 
     <EditText
         android:id="@+id/date_input"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -44,7 +44,7 @@
 
     <EditText
         android:id="@+id/salle_input"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -56,7 +56,7 @@
 
     <EditText
         android:id="@+id/duree_input"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"

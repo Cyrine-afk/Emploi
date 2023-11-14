@@ -1,46 +1,30 @@
 package com.example.emploi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.emploi.Adapters.MenuAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    FloatingActionButton add_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Sample menu items
-        String[] menuItems = getResources().getStringArray(R.array.menu_items);
-
-        // Set up RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewMenu);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        MenuAdapter menuAdapter = new MenuAdapter(this, menuItems);
-        recyclerView.setAdapter(menuAdapter);
-
-        // Set item click listener
-        menuAdapter.setOnMenuItemClickListener(new MenuAdapter.OnMenuItemClickListener() {
+        recyclerView = findViewById(R.id.recyclerView);
+        add_button = findViewById(R.id.add_meeting_Button);
+        add_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onMenuItemClick(int position) {
-                // Handle item click here
-                switch (position) {
-                    case 0:
-                        // Navigate to MeetingActivity
-                        startActivity(new Intent(MainActivity.this, MeetingActivity.class));
-                        break;
-                    /*case 1:
-                        // Navigate to EtudiantActivity
-                        startActivity(new Intent(MainActivity.this, EtudiantActivity.class));
-                        break;*/
-
-                    default:
-                        break;
-                }
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddMeetingActivity.class);
+                startActivity(intent);
             }
         });
     }

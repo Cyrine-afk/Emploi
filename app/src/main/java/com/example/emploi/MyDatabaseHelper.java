@@ -26,7 +26,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_TITLE = "meet_title";
     private static final String COLUMN_OWNER = "meet_owner";
     private static final String COLUMN_LINK = "meet_link";
-    private static final String COLUMN_DATE = "meet_date";*/
+    private static final String COLUMN_DATE = "meet_date";
+    private static final String COLUMN_TIME = "meet_time";*/
 
     // Meeting table
     private static final String CREATE_MEETING_TABLE = "CREATE TABLE Meeting (" +
@@ -35,6 +36,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             "meet_duree INTEGER," +
             "meet_link TEXT," +
             "meet_date TEXT," +
+            "meet_time TEXT," +
             "meet_salle TEXT" +
             ");";
 
@@ -47,6 +49,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static synchronized MyDatabaseHelper getInstance(Context context) {
         return new MyDatabaseHelper(context.getApplicationContext());
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -117,5 +120,4 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return meetingsList;
     }
-
 }
