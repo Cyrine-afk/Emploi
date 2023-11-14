@@ -41,7 +41,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             ");";
 
 
-    public MyDatabaseHelper(@Nullable Context context) {
+    MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -120,4 +120,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return meetingsList;
     }
+
+    public void updateMeet(int id, String title, String link, String date, String salle, int duree) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("meet_title", title);
+        cv.put("meet_duree", duree);
+        cv.put("meet_link", link);
+        cv.put("meet_date", date);
+        cv.put("meet_salle", salle);
+
+
+        long result = db.update("Meeting", cv, "_id=?", new String[]{String.valueOf(id)});
+        if(result == -1){
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

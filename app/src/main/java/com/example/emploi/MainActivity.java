@@ -1,5 +1,6 @@
 package com.example.emploi;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.emploi.Adapter.MeetingAdapter;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         List<Meeting> meetingsList = myDB.getAllMeetings();
 
         // Set up the adapter
-        MeetingAdapter meetingAdapter = new MeetingAdapter(this, meetingsList);
+        MeetingAdapter meetingAdapter = new MeetingAdapter(MainActivity.this, MainActivity.this, meetingsList);
         recyclerView.setAdapter(meetingAdapter);
 
         add_button.setOnClickListener(new View.OnClickListener() {
@@ -50,5 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            recreate();
+        }
     }
 }
