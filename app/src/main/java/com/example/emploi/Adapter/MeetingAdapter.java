@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +27,9 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MyViewHo
     private Context context;
 
     Activity activity;
+
+    Animation translate_anim;
+
 
     public MeetingAdapter(Activity activity, Context context, List<Meeting> meetingsList) {
         this.activity = activity;
@@ -88,6 +93,10 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MyViewHo
             meet_salle_txt = itemView.findViewById(R.id.meet_salle_txt);
             meet_link_txt = itemView.findViewById(R.id.meet_link_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+
+            // Animate RecycleView
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            mainLayout.setAnimation(translate_anim);
         }
     }
 }
