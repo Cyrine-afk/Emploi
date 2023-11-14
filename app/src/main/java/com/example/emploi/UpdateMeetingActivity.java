@@ -1,9 +1,14 @@
 package com.example.emploi;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +17,10 @@ import android.widget.Toast;
 public class UpdateMeetingActivity extends AppCompatActivity {
 
     EditText title_input, link_input, date_input, salle_input, duree_input;
-    Button update_button;
+    Button update_button, delete_button;
     MyDatabaseHelper myDB;
+
+    String id; // Make id an instance variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +35,28 @@ public class UpdateMeetingActivity extends AppCompatActivity {
         salle_input = findViewById(R.id.salle_input2);
         duree_input = findViewById(R.id.duree_input2);
         update_button = findViewById(R.id.update_button);
+        delete_button = findViewById(R.id.delete_button);
 
         getAndSetIntentData();
+
+        //Set actionbar title after getAndSetIntentData method
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(title_input.getText().toString());
+        }
 
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Handle the save cours button click
                 updateMeeting();
+            }
+        });
+
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDialog();
             }
         });
     }
@@ -48,7 +69,7 @@ public class UpdateMeetingActivity extends AppCompatActivity {
                 && intent.hasExtra("meet_date")
                 && intent.hasExtra("meet_salle")
                 && intent.hasExtra("meet_duree")) {
-            String id = intent.getStringExtra("meet_id");
+            id = intent.getStringExtra("meet_id");
             String title = intent.getStringExtra("meet_title");
             String link = intent.getStringExtra("meet_link");
             String date = intent.getStringExtra("meet_date");
@@ -80,5 +101,33 @@ public class UpdateMeetingActivity extends AppCompatActivity {
 
         // Close the activity
         finish();
+    }
+
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + title_input.getText().toString() + " ?");
+        builder.setMessage("Are you sure you want to delete " + title_input.getText().toString() + " ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateMeetingActivity.this);
+                myDB.deleteMeet(Integer.parseInt(id));
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.create().show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

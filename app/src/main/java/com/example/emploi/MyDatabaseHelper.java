@@ -140,4 +140,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void deleteMeet(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete("Meeting", "_id=?", new String[]{String.valueOf(id)});
+        if(result == -1){
+            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
