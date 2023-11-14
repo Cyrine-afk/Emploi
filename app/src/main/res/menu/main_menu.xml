@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Add this Button widget in your layout -->
+    <item
+        android:id="@+id/menu_emploi"
+        android:title="Meeting Module"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <!-- Add other menu items if needed -->
+    <item
+        android:id="@+id/menu_salles"
+        android:title="Salles Module"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/calendrier"
+        android:title="Calendar"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+</menu>

@@ -124,10 +124,5 @@ public class UpdateMeetingActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.my_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+
 }
